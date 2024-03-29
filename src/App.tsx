@@ -4,6 +4,7 @@ import HomePage from './pages/Home.tsx';
 import SessionsPage from './pages/Sessions.tsx';
 import SessionPage from './pages/Session.tsx';
 import Root from './pages/Root.tsx';
+import Page404 from './pages/Page404.tsx';
 
 const Router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const Router = createBrowserRouter([
       },
       { path: 'sessions', element: <SessionsPage /> },
       { path: 'sessions/:id', element: <SessionPage /> },
+      { path: '*', element: <Page404 /> },
     ],
   },
 ]);
