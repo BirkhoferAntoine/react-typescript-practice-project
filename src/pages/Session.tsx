@@ -2,10 +2,12 @@ import { useParams } from 'react-router-dom';
 
 import { SESSIONS } from '../dummy-sessions.ts';
 import Button from '../components/UI/Button.tsx';
+import { useState } from 'react';
+import BookSession from '../components/sessions/BookSession.tsx';
 
 export default function SessionPage() {
   const params = useParams<{ id: string }>();
-
+  const [bookingModalIsOpen, setBookingModalIsOpen] = useState<boolean>(false);
   const sessionId = params.id;
   const loadedSession = SESSIONS.find((session) => session.id === sessionId);
 
@@ -17,6 +19,12 @@ export default function SessionPage() {
     );
   }
 
+  function handleOpenBookingModal() {
+    setBookingModalIsOpen(true);
+  }
+  function handleCloseBookingModal() {
+    setBookingModalIsOpen(false);
+  }
 
   return (
     <main id="session-page">
@@ -36,13 +44,13 @@ export default function SessionPage() {
               })}
             </time>
             <p>
-              <Button>Book Session</Button>
-              {/* Todo: Add button that opens "Book Session" dialog / modal */}
+              <Button onClick={() => handleOpenBookingModal()}>Book Session</Button>
             </p>
           </div>
         </header>
         <p id="content">{loadedSession.description}</p>
       </article>
+      <BookSession isOpen={bookingModalIsOpen} handleClose={handleCloseBookingModal} />
     </main>
   );
 }

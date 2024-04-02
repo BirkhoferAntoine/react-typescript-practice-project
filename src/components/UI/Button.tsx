@@ -3,11 +3,9 @@ import { Link, LinkProps } from "react-router-dom";
 
 type ButtonProps = ComponentPropsWithoutRef<'button'> & {
   to: never;
-  textOnly: boolean;
 };
 
 type AnchorProps = LinkProps & {
-  textOnly: boolean;
 }
 
 function isLinkProps(props: AnchorProps | ButtonProps): props is AnchorProps {
@@ -16,11 +14,11 @@ function isLinkProps(props: AnchorProps | ButtonProps): props is AnchorProps {
 
 const Button = (props: AnchorProps | ButtonProps) => {
   if (isLinkProps(props)) {
-    return <Link className={props.textOnly ? 'button--text-only' : 'button' } {...props}></Link>
+    return <Link {...props} className={'button ' + (props.className ? props.className : '')}></Link>
   }
 
   return (
-      <button className={props.textOnly ? 'button--text-only' : 'button' } {...props}></button>
+      <button {...props} className={'button ' + (props.className ? props.className : '')}></button>
   );
 }
 
