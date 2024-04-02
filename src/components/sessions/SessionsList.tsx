@@ -1,19 +1,11 @@
 import {type FC} from "react";
 import SessionItem from './SessionItem.tsx';
+import { SessionType } from '../../context/sessions-context.tsx';
 
 type SessionsListProps = {
-    sessionsList: SessionItemType[];
+    sessionsList: SessionType[];
 };
 
-type SessionItemType = {
-    id: string;
-    title: string;
-    summary: string;
-    description: string;
-    duration: number;
-    date: string;
-    image: string;
-};
 
 const SessionsList: FC<SessionsListProps> = ({sessionsList}) => {
     return (
