@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useReducer, useState } from 'react';
+import { createContext, ReactNode, useContext, useReducer } from 'react';
 
 type SessionsContextProps = {
     children: ReactNode;
@@ -43,14 +43,14 @@ function sessionReducer(state: SessionState, action: SessionAction) {
         }
         return {
             ...state,
-            sessions: state.bookedSessions.concat(action.session)
+            bookedSessions: state.bookedSessions.concat(action.session)
         }
     }
 
     if (action.type === 'REMOVE_SESSION') {
         return {
             ...state,
-            sessions: state.bookedSessions.filter(value => value.id !== action.id)
+            bookedSessions: state.bookedSessions.filter(value => value.id !== action.id)
         }
     }
 
@@ -72,6 +72,7 @@ const SessionsContextProvider = ({children}: SessionsContextProps) => {
 
     function addSession(sessionData: SessionType) {
         dispatch({type: 'ADD_SESSION', session: sessionData});
+        console.log("=>(sessions-context.tsx:76) sessionsState", sessionsState);
     }
 
     function removeSession(id: string) {

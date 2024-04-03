@@ -44,13 +44,13 @@ export default function SessionPage() {
               })}
             </time>
             <p>
-              <Button onClick={() => handleOpenBookingModal()}>Book Session</Button>
+              <Button onClick={handleOpenBookingModal}>Book Session</Button>
             </p>
           </div>
         </header>
         <p id="content">{loadedSession.description}</p>
       </article>
-      <BookSession isOpen={bookingModalIsOpen} handleClose={handleCloseBookingModal} />
+      {bookingModalIsOpen && <BookSession isOpen={bookingModalIsOpen} handleClose={handleCloseBookingModal}  session={loadedSession}/>}
     </main>
   );
 }

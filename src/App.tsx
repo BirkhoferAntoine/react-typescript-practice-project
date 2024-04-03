@@ -5,6 +5,7 @@ import SessionsPage from './pages/Sessions.tsx';
 import SessionPage from './pages/Session.tsx';
 import Root from './pages/Root.tsx';
 import Page404 from './pages/Page404.tsx';
+import SessionsContextProvider from './context/sessions-context.tsx';
 
 const Router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ const Router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={Router} />;
+  return (
+      <SessionsContextProvider>
+        <RouterProvider router={Router} />
+      </SessionsContextProvider>
+  );
 }
 
 export default App;

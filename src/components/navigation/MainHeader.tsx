@@ -1,8 +1,21 @@
 import Button from "../UI/Button.tsx";
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import UpcomingSessions from '../sessions/UpcomingSessions.tsx';
 
 
 const MainHeader = () => {
+
+    const [upcomingModalIsOpen, setUpcomingModalIsOpen] = useState<boolean>(false);
+
+    function handleCloseModal() {
+        setUpcomingModalIsOpen(false);
+    }
+
+    function handleOpenModal() {
+        setUpcomingModalIsOpen(true);
+    }
+
     return (
         <header id={'main-header'}>
             <h1>ReactMentoring</h1>
@@ -18,9 +31,10 @@ const MainHeader = () => {
                             Browse Sessions
                         </NavLink>
                     </li>
-                    <li><Button>Upcoming Sessions</Button></li>
+                    <li><Button onClick={handleOpenModal}>Upcoming Sessions</Button></li>
                 </ul>
             </nav>
+            {upcomingModalIsOpen && <UpcomingSessions onClose={handleCloseModal}/>}
         </header>
     );
 };
