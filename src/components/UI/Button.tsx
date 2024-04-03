@@ -2,7 +2,7 @@ import {type ComponentPropsWithoutRef} from "react";
 import { Link, LinkProps } from "react-router-dom";
 
 type ButtonProps = ComponentPropsWithoutRef<'button'> & {
-  to: never;
+  to?: never;
 };
 
 type AnchorProps = LinkProps & {
